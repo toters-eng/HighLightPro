@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.FrameLayout
 import androidx.core.graphics.toColorInt
+import androidx.core.view.ViewCompat
 import androidx.core.view.children
 import com.hyy.highlightpro.parameter.Constraints
 import com.hyy.highlightpro.parameter.HighlightParameter
@@ -152,8 +153,14 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
         parameter.constraints.forEach {
             when (it) {
                 Constraints.StartToStartOfHighlight -> {
-                    layoutParams.leftMargin = (highLightRect.left + margin.start).toInt()
-                    gravities.add(Gravity.START)
+                    if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR) {
+                        layoutParams.leftMargin = (highLightRect.left + margin.start).toInt()
+                        gravities.add(Gravity.START)
+                    } else {
+                        layoutParams.rightMargin =
+                            (rootWidth - highLightRect.right + margin.end).toInt()
+                        gravities.add(Gravity.START)
+                    }
                 }
 
                 Constraints.EndToStartOfHighlight -> {
@@ -170,9 +177,14 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                 }
 
                 Constraints.EndToEndOfHighlight -> {
-                    layoutParams.rightMargin =
-                        (rootWidth - highLightRect.right + margin.end).toInt()
-                    gravities.add(Gravity.END)
+                    if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR) {
+                        layoutParams.rightMargin =
+                            (rootWidth - highLightRect.right + margin.end).toInt()
+                        gravities.add(Gravity.END)
+                    } else {
+                        layoutParams.leftMargin = (highLightRect.left + margin.start).toInt()
+                        gravities.add(Gravity.END)
+                    }
                 }
 
                 Constraints.TopToTopOfHighlight -> {
