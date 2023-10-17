@@ -150,10 +150,11 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
         val margin = parameter.marginOffset
         val highLightRect = parameter.rect
         val gravities = mutableListOf<Int>()
+        val locale = resources.configuration.locales.get(0).toLanguageTag()
         parameter.constraints.forEach {
             when (it) {
                 Constraints.StartToStartOfHighlight -> {
-                    if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR) {
+                    if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
                         layoutParams.leftMargin = (highLightRect.left + margin.start).toInt()
                         gravities.add(Gravity.START)
                     } else {
@@ -177,7 +178,7 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                 }
 
                 Constraints.EndToEndOfHighlight -> {
-                    if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR) {
+                    if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
                         layoutParams.rightMargin =
                             (rootWidth - highLightRect.right + margin.end).toInt()
                         gravities.add(Gravity.END)
