@@ -8,7 +8,9 @@ import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import android.widget.FrameLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.toColorInt
+import androidx.core.os.ConfigurationCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.children
 import com.hyy.highlightpro.parameter.Constraints
@@ -150,7 +152,7 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
         val margin = parameter.marginOffset
         val highLightRect = parameter.rect
         val gravities = mutableListOf<Int>()
-        val locale = resources.configuration.locales.get(0).toLanguageTag()
+        val locale = ConfigurationCompat.getLocales(resources.configuration).get(0).toLanguageTag()
         parameter.constraints.forEach {
             when (it) {
                 Constraints.StartToStartOfHighlight -> {
