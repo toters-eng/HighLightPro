@@ -161,7 +161,7 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
         val margin = parameter.marginOffset
         val highLightRect = parameter.rect
         val gravities = mutableListOf<Int>()
-        val locale = ConfigurationCompat.getLocales(resources.configuration).get(0).toLanguageTag()
+        val locale = ConfigurationCompat.getLocales(resources.configuration).get(0)?.toLanguageTag()
         parameter.constraints.forEach {
             when (it) {
                 Constraints.StartToStartOfHighlight -> {
