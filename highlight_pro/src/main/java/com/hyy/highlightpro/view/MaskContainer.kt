@@ -248,9 +248,15 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                             }
                         }
                     } else {
-                        layoutParams.leftMargin =
-                            (rectLine + highLightRect.width() / 2f - width ).toInt()
-                        gravities.add(Gravity.START)
+                        if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
+                            layoutParams.rightMargin =
+                                (rectLine + highLightRect.width() / 2f - width).toInt()
+                            gravities.add(Gravity.START)
+                        } else {
+                            layoutParams.leftMargin =
+                                (rectLine + highLightRect.width() / 2f - width).toInt()
+                            gravities.add(Gravity.START)
+                        }
                     }
                 }
 
