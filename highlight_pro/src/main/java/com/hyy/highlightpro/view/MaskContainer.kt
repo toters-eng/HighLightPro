@@ -224,19 +224,21 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
 
                 Constraints.CenterHorizontalOfHighlight -> {
                     val width = layoutParams.width
-
+                    val rectLine = if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
+                        highLightRect.right
+                    } else highLightRect.left
                     if (width <= 0) {
                         layoutParams.leftMargin =
-                            (highLightRect.left + highLightRect.width() / 2f).toInt()
+                            (rectLine + highLightRect.width() / 2f).toInt()
                         gravities.add(Gravity.START)
                         view.doOnPreDraw { tipsView ->
                             layoutParams.leftMargin =
-                                (highLightRect.left + highLightRect.width() / 2f - tipsView.width).toInt()
+                                (rectLine + highLightRect.width() / 2f - tipsView.width).toInt()
                             view.layoutParams = layoutParams
                         }
                     } else {
                         layoutParams.leftMargin =
-                            (highLightRect.left + highLightRect.width() / 2f - width / 2f).toInt()
+                            (rectLine + highLightRect.width() / 2f - width ).toInt()
                         gravities.add(Gravity.START)
                     }
                 }
