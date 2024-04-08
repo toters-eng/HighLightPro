@@ -228,7 +228,7 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                         if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
                             layoutParams.rightMargin =
                                 (highLightRect.right + highLightRect.width() / 2f).toInt()
-                            gravities.add(Gravity.START)
+                            gravities.add(Gravity.END)
                             view.doOnPreDraw { tipsView ->
                                 layoutParams.rightMargin =
                                     (highLightRect.right + highLightRect.width() / 2f - tipsView.width).toInt()
@@ -247,7 +247,7 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                         if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
                             layoutParams.rightMargin =
                                 (highLightRect.right + highLightRect.width() / 2f - width).toInt()
-                            gravities.add(Gravity.START)
+                            gravities.add(Gravity.END)
                         } else {
                             layoutParams.leftMargin =
                                 (highLightRect.left + highLightRect.width() / 2f - width).toInt()
