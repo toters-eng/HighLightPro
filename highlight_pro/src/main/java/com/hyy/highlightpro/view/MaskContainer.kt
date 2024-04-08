@@ -246,12 +246,12 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                             gravities.add(Gravity.START)
                             view.doOnPreDraw { tipsView ->
                                 layoutParams.rightMargin =
-                                    (tipsView.width - highLightRect.right + highLightRect.width() / 2f).toInt()
+                                    (tipsView.width * 2 - highLightRect.right + highLightRect.width() / 2f).toInt()
                                 view.layoutParams = layoutParams
                             }
                         } else {
                             layoutParams.rightMargin =
-                                (width - highLightRect.right + highLightRect.width() / 2f).toInt()
+                                (width * 2 - highLightRect.right + highLightRect.width() / 2f).toInt()
                             gravities.add(Gravity.START)
                         }
                     }
