@@ -224,20 +224,36 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
 
                 Constraints.CenterHorizontalOfHighlight -> {
                     val width = layoutParams.width
-
-                    if (width <= 0) {
-                        layoutParams.leftMargin =
-                            (highLightRect.left + highLightRect.width() / 2f).toInt()
-                        gravities.add(Gravity.START)
-                        view.doOnPreDraw { tipsView ->
+                    if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
+                        if (width <= 0) {
                             layoutParams.leftMargin =
-                                (highLightRect.left + highLightRect.width() / 2f - tipsView.width).toInt()
-                            view.layoutParams = layoutParams
+                                (highLightRect.left + highLightRect.width() / 2f).toInt()
+                            gravities.add(Gravity.START)
+                            view.doOnPreDraw { tipsView ->
+                                layoutParams.leftMargin =
+                                    (highLightRect.left + highLightRect.width() / 2f - tipsView.width).toInt()
+                                view.layoutParams = layoutParams
+                            }
+                        } else {
+                            layoutParams.leftMargin =
+                                (highLightRect.left + highLightRect.width() / 2f - width).toInt()
+                            gravities.add(Gravity.START)
                         }
                     } else {
-                        layoutParams.leftMargin =
-                            (highLightRect.left + highLightRect.width() / 2f - width).toInt()
-                        gravities.add(Gravity.START)
+                        if (width <= 0) {
+                            layoutParams.rightMargin =
+                                (highLightRect.right + highLightRect.width() / 2f).toInt()
+                            gravities.add(Gravity.START)
+                            view.doOnPreDraw { tipsView ->
+                                layoutParams.rightMargin =
+                                    (highLightRect.right + highLightRect.width() / 2f - tipsView.width).toInt()
+                                view.layoutParams = layoutParams
+                            }
+                        } else {
+                            layoutParams.rightMargin =
+                                (highLightRect.right + highLightRect.width() / 2f - width).toInt()
+                            gravities.add(Gravity.START)
+                        }
                     }
                 }
 
