@@ -226,7 +226,7 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                     val width = layoutParams.width
                     val rectLine = if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
                         highLightRect.right
-                    } else highLightRect.left
+                    } else highLightRect.right
                     if (width <= 0) {
                         layoutParams.leftMargin =
                             (rectLine + highLightRect.width() / 2f).toInt()
