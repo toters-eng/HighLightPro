@@ -226,14 +226,6 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                     val width = layoutParams.width
                     if (width <= 0) {
                         if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
-                            layoutParams.rightMargin =
-                                (highLightRect.right + highLightRect.width() / 2f).toInt()
-                            gravities.add(Gravity.END)
-                            view.doOnPreDraw { tipsView ->
-                                layoutParams.rightMargin =
-                                    (highLightRect.right + highLightRect.width() / 2f - tipsView.width).toInt()
-                            }
-                        } else {
                             layoutParams.leftMargin =
                                 (highLightRect.left + highLightRect.width() / 2f).toInt()
                             gravities.add(Gravity.START)
@@ -242,15 +234,23 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                                     (highLightRect.left + highLightRect.width() / 2f - tipsView.width).toInt()
                             }
                             view.layoutParams = layoutParams
+                        } else {
+                            layoutParams.rightMargin =
+                                (highLightRect.right + highLightRect.width() / 2f).toInt()
+                            gravities.add(Gravity.START)
+                            view.doOnPreDraw { tipsView ->
+                                layoutParams.rightMargin =
+                                    (highLightRect.right + highLightRect.width() / 2f - tipsView.width).toInt()
+                            }
                         }
                     } else {
                         if (resources.configuration.layoutDirection == ViewCompat.LAYOUT_DIRECTION_LTR && locale != "ku") {
-                            layoutParams.rightMargin =
-                                (highLightRect.right + highLightRect.width() / 2f - width).toInt()
-                            gravities.add(Gravity.END)
-                        } else {
                             layoutParams.leftMargin =
                                 (highLightRect.left + highLightRect.width() / 2f - width).toInt()
+                            gravities.add(Gravity.START)
+                        } else {
+                            layoutParams.rightMargin =
+                                (highLightRect.right + highLightRect.width() / 2f - width).toInt()
                             gravities.add(Gravity.START)
                         }
                     }
