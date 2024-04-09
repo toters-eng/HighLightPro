@@ -243,12 +243,17 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                         }
                     } else {
                         if (width <= 0) {
+                            layoutParams.rightMargin =
+                                (rootWidth - highLightRect.right - highLightRect.width() / 2f).toInt()
                             layoutParams.leftMargin =
-                                (highLightRect.right + highLightRect.width() / 2f).toInt()
+                                (highLightRect.left - highLightRect.width() / 2f).toInt()
                             gravities.add(Gravity.START)
                             view.doOnPreDraw { tipsView ->
+                                val centerHighlight = (highLightRect.left + highLightRect.right - rootWidth)
                                 layoutParams.rightMargin =
-                                    (rootWidth - highLightRect.right + highLightRect.width() / 2f ).toInt()
+                                    (rootWidth - centerHighlight - tipsView.width).toInt() / 2
+                                layoutParams.leftMargin =
+                                    (rootWidth + centerHighlight - tipsView.width).toInt() / 2
                                 view.layoutParams = layoutParams
                             }
                         } else {
