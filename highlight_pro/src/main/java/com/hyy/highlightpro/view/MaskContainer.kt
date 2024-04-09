@@ -240,7 +240,8 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                             view.layoutParams = layoutParams
                         }
                     } else {
-                       (highLightRect.right - highLightRect.width() / 2f - width).toInt()
+                        layoutParams.leftMargin =
+                            (highLightRect.left + highLightRect.width() / 2f - width / 2f).toInt()
                         gravities.add(Gravity.START)
                     }
                 }
