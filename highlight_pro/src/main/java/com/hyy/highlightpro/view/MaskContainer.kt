@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.toColorInt
 import androidx.core.os.ConfigurationCompat
@@ -18,6 +19,7 @@ import androidx.core.view.doOnPreDraw
 import com.hyy.highlightpro.parameter.Constraints
 import com.hyy.highlightpro.parameter.HighlightParameter
 import com.hyy.highlightpro.HighlightProImpl
+import com.hyy.highlightpro.R
 
 /**
  *Create by hyy on 2021/2/6
@@ -241,18 +243,18 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                         }
                     } else {
                         if (width <= 0) {
-                            layoutParams.rightMargin =
-                                (highLightRect.right + highLightRect.width() / 2f).toInt()
-                            gravities.add(Gravity.CENTER_HORIZONTAL)
+                            layoutParams.leftMargin =
+                                (highLightRect.left + highLightRect.width() / 2f).toInt()
+                            gravities.add(Gravity.START)
                             view.doOnPreDraw { tipsView ->
-                                layoutParams.rightMargin =
-                                    (rootWidth - highLightRect.right + highLightRect.width() / 2f - tipsView.width).toInt()
+                                layoutParams.leftMargin =
+                                    (rootWidth - highLightRect.left + highLightRect.width() / 2f - tipsView.width).toInt()
                                 view.layoutParams = layoutParams
                             }
                         } else {
-                            layoutParams.rightMargin =
-                                (highLightRect.right + highLightRect.width() / 2f - width).toInt()
-                            gravities.add(Gravity.CENTER_HORIZONTAL)
+                            layoutParams.leftMargin =
+                                (highLightRect.left + highLightRect.width() / 2f - width).toInt()
+                            gravities.add(Gravity.START)
                         }
                     }
                 }
