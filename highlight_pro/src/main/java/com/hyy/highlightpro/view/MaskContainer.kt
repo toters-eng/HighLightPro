@@ -244,16 +244,16 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                     } else {
                         if (width <= 0) {
                             layoutParams.leftMargin =
-                                (highLightRect.left + highLightRect.width() / 2f).toInt()
+                                (highLightRect.left + highLightRect.width()).toInt()
                             gravities.add(Gravity.END)
                             view.doOnPreDraw { tipsView ->
                                 layoutParams.leftMargin =
-                                    (rootWidth - highLightRect.left + highLightRect.width() / 2f - tipsView.width).toInt()
+                                    (rootWidth - highLightRect.left + highLightRect.width() - tipsView.width).toInt()
                                 view.layoutParams = layoutParams
                             }
                         } else {
                             layoutParams.leftMargin =
-                                (highLightRect.left + highLightRect.width() / 2f - width).toInt()
+                                (highLightRect.left + highLightRect.width() - width).toInt()
                             gravities.add(Gravity.END)
                         }
                     }
