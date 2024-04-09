@@ -251,9 +251,9 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                             view.doOnPreDraw { tipsView ->
                                 val centerHighlight = (highLightRect.left + highLightRect.right - rootWidth)
                                 layoutParams.rightMargin =
-                                    (rootWidth - centerHighlight - tipsView.width).toInt() / 2
+                                    (rootWidth - centerHighlight - tipsView.width).toInt() / 2 - tipsView.width
                                 layoutParams.leftMargin =
-                                    (rootWidth + centerHighlight - tipsView.width).toInt() / 2
+                                    (rootWidth + centerHighlight - tipsView.width).toInt() / 2 - tipsView.width
                                 view.layoutParams = layoutParams
                             }
                         } else {
