@@ -243,17 +243,17 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                         }
                     } else {
                         if (width <= 0) {
-//                            layoutParams.leftMargin =
-//                                (highLightRect.left - highLightRect.width() / 2f).toInt()
-                            gravities.add(Gravity.END)
-//                            view.doOnPreDraw { tipsView ->
-//                                layoutParams.leftMargin =
-//                                    (rootWidth - highLightRect.left - highLightRect.width() / 2f - tipsView.width).toInt()
-//                                view.layoutParams = layoutParams
-//                            }
+                            layoutParams.leftMargin =
+                                (highLightRect.right + highLightRect.width() / 2f).toInt()
+                            gravities.add(Gravity.START)
+                            view.doOnPreDraw { tipsView ->
+                                layoutParams.rightMargin =
+                                    (rootWidth - highLightRect.right + highLightRect.width() / 2f ).toInt()
+                                view.layoutParams = layoutParams
+                            }
                         } else {
-//                               (highLightRect.left - highLightRect.width() / 2f - width).toInt()
-                            gravities.add(Gravity.END)
+                               (highLightRect.right - highLightRect.width() / 2f - width).toInt()
+                            gravities.add(Gravity.START)
                         }
                     }
                 }
