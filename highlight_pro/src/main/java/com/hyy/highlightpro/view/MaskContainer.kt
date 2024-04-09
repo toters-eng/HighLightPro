@@ -20,6 +20,7 @@ import com.hyy.highlightpro.parameter.Constraints
 import com.hyy.highlightpro.parameter.HighlightParameter
 import com.hyy.highlightpro.HighlightProImpl
 import com.hyy.highlightpro.R
+import kotlin.math.abs
 
 /**
  *Create by hyy on 2021/2/6
@@ -243,17 +244,15 @@ internal class MaskContainer constructor(context: Context, attributeSet: Attribu
                         }
                     } else {
                         if (width <= 0) {
-                            layoutParams.rightMargin =
-                                (rootWidth - highLightRect.right - highLightRect.width() / 2f).toInt()
-                            layoutParams.leftMargin =
-                                (highLightRect.left - highLightRect.width() / 2f).toInt()
+                            val transitFromCenter = (highLightRect.left + highLightRect.right - rootWidth)
+                            layoutParams.rightMargin = (transitFromCenter).toInt()/2
+                            layoutParams.leftMargin = (transitFromCenter).toInt()/2
                             gravities.add(Gravity.START)
                             view.doOnPreDraw { tipsView ->
-                                val centerHighlight = (highLightRect.left + highLightRect.right - rootWidth)
                                 layoutParams.rightMargin =
-                                    (rootWidth - centerHighlight - tipsView.width).toInt() / 2 - tipsView.width
+                                    (rootWidth - transitFromCenter - tipsView.width).toInt() / 2
                                 layoutParams.leftMargin =
-                                    (rootWidth + centerHighlight - tipsView.width).toInt() / 2 - tipsView.width
+                                    (rootWidth + transitFromCenter - tipsView.width).toInt() / 2
                                 view.layoutParams = layoutParams
                             }
                         } else {
